@@ -125,7 +125,12 @@ def main():
         os.environ["PATH"] = tcPath + ':' + os.environ["PATH"]
     
     outDir = 'out'
-    if os.path.exists(outDir) and not args.allow_dirty:
+    if not args.allow_dirty:
+    # Run make mrproper silently
+    popen_impl(['make', 'mrproper'])
+
+    # After running make mrproper, check if the out directory exists and delete it
+    if os.path.exists(outDir):
         print('Make clean...')
         shutil.rmtree(outDir)
     
