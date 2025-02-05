@@ -126,13 +126,13 @@ def main():
     
     outDir = 'out'
     if not args.allow_dirty:
-    # Run make mrproper silently
-    popen_impl(['make', 'mrproper'])
+        # Run make mrproper silently
+        popen_impl(['make', 'mrproper'])
 
-    # After running make mrproper, check if the out directory exists and delete it
-    if os.path.exists(outDir):
-        print('Make clean...')
-        shutil.rmtree(outDir)
+        # After running make mrproper, check if the out directory exists and delete it
+        if os.path.exists(outDir):
+            print('Make clean...')
+            shutil.rmtree(outDir)
     
     make_defconfig = []
     make_common = ['make', 'O=out', 'LLVM=1', f'-j{os.cpu_count()}']
